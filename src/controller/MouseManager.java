@@ -1,13 +1,18 @@
 package controller;
 
 import model.*;
-import model.Shape;
+import model.Command.CommandCreate;
+import model.Command.CommandMove;
+import model.Command.CommandSelect;
 import model.persistence.ApplicationState;
 import view.gui.PaintCanvas;
+import model.Shape;
+import model.Coordinate;
 
-import java.awt.*;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import model.Context;
 
 public class MouseManager extends MouseAdapter {
 
@@ -20,11 +25,8 @@ Extend this class to create a MouseEvent which create instance in MouseManager
     private final ApplicationState appState;
     private final PaintCanvas paintCanvas;
     private final ShapeList shapeList;
-    private Shape.Coordinate mousestartPoint;
-    private Color primaryColor;
-    private Color secondaryColor;
-    private ShapeType shapeType;
-    private ShapeShadingType shapeShadingType;
+    private Coordinate startPoint;
+
 
 
     public MouseManager(ApplicationState appState, PaintCanvas paintCanvas, ShapeList shapeList) {
@@ -36,35 +38,35 @@ Extend this class to create a MouseEvent which create instance in MouseManager
     @Override
     public void mousePressed(MouseEvent e) {
         //Mouse start point
-        mousestartPoint = new Shape.Coordinate(e.getX(), e.getY());
-        //Shape type
-        shapeType = appState.getActiveShapeType();
-        //Shading type
-        shapeShadingType = appState.getActiveShapeShadingType();
-        //ShapeColor
-        ShapeColor getPrimaryColor = appState.getActivePrimaryColor();
-        //primary color
-        primaryColor = getPrimaryColor.getColor();
-        //Shape Color
-        ShapeColor getSecondaryColor = appState.getActiveSecondaryColor();
-        //SecondaryColor
-        secondaryColor = getSecondaryColor.getColor();
+        startPoint = new Coordinate(e.getX(), e.getY());
+
     }
-//Once the mouse is released, parameter will be passed to shape builder and result will be displayed
+
+    //Once the mouse is released, parameter will be passed to shape builder and result will be displayed
     @Override
     public void mouseReleased(MouseEvent e) {
-        Shape.Coordinate endPoint = new Shape.Coordinate(e.getX(), e.getY());
+        Context strategy = new Context();
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
+        Coordinate endPoint = new Coordinate(e.getX(), e.getY());
         Shape newShape = new Shape.ShapeBuilder()
-                .setStartPoint(mousestartPoint)
-                .setEndPoint(endPoint)
-                .setPrimaryColor(primaryColor)
-                .setSecondaryColor(secondaryColor)
-                .setShapeType(shapeType)
-                .setShadingType(shapeShadingType).build();
-        // System.out.println("end point at " + endPoint.getX() + ", " + endPoint.getY());
-        if(appState.getActiveMouseMode() == MouseMode.DRAW) {
-            CreateShape createShape = new CreateShape(paintCanvas, newShape, shapeList);
-            createShape.run();
+                .setPaintCanvas(paintCanvas)
+                .setTwoPoint(drawingPoint)
+                .setPrimaryColor(appState.getActivePrimaryColor().getColor())
+                .setSecondaryColor(appState.getActiveSecondaryColor().getColor())
+                .setShapeType(appState.getActiveShapeType())
+                .setShadingType(appState.getActiveShapeShadingType())
+                .build();
+        if (appState.getActiveMouseMode() == MouseMode.DRAW) {
+            strategy.setMouseMode(new CommandCreate(newShape, shapeList));
+            strategy.execute();
+        } else if (appState.getActiveMouseMode() == MouseMode.SELECT) {
+            strategy.setMouseMode(new CommandSelect(drawingPoint, shapeList));
+            strategy.execute();
+        } else {
+            strategy.setMouseMode(new CommandMove(drawingPoint, shapeList));
+            strategy.execute();
         }
     }
 }
+
+

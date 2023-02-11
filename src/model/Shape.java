@@ -1,24 +1,25 @@
 package model;
 
+import view.interfaces.PaintCanvasBase;
+
 import java.awt.*;
 
+/**
+ *     This is builder pattern for shape builder, and this is a class for storing parameters so other class are
+ *     able to access it through getter.
+ */
 public class Shape {
 
-    /*
-    This is builder pattern for shape builder, and this still a class for storing parameters
-    so other class are
-    able to access it through getter.
-     */
-    private Coordinate startPoint;
-    private Coordinate endPoint;
+    private PaintCanvasBase paintCanvas;
+    private DrawingPoint drawingPoint;
     private Color primaryColor;
     private Color secondaryColor;
     private ShapeType shapeType;
     private ShapeShadingType shadingType;
 
     private Shape(ShapeBuilder shapeBuilder) {
-        this.startPoint = shapeBuilder.startPoint;
-        this.endPoint = shapeBuilder.endPoint;
+        this.paintCanvas = shapeBuilder.paintCanvas;
+        this.drawingPoint = shapeBuilder.drawingPoint;
         this.primaryColor = shapeBuilder.primaryColor;
         this.secondaryColor = shapeBuilder.secondaryColor;
         this.shapeType = shapeBuilder.shapeType;
@@ -26,25 +27,22 @@ public class Shape {
     }
 
     public static class ShapeBuilder {
-        private Coordinate startPoint;
-        private Coordinate endPoint;
+        private PaintCanvasBase paintCanvas;
+        private DrawingPoint drawingPoint;
         private Color primaryColor;
         private Color secondaryColor;
         private ShapeType shapeType;
         private ShapeShadingType shadingType;
 
-        public ShapeBuilder setStartPoint(Coordinate startPoint) {
-            this.startPoint = startPoint;
+        public ShapeBuilder setPaintCanvas(PaintCanvasBase paintCanvas) {
+            this.paintCanvas = paintCanvas;
             return this;
         }
 
-
-
-        public ShapeBuilder setEndPoint(Coordinate endPoint) {
-            this.endPoint = endPoint;
+        public ShapeBuilder setTwoPoint(DrawingPoint drawingPoint) {
+            this.drawingPoint = drawingPoint;
             return this;
         }
-
 
         public ShapeBuilder setPrimaryColor(Color primaryColor) {
             this.primaryColor = primaryColor;
@@ -69,16 +67,14 @@ public class Shape {
         public Shape build() {
             return new Shape(this);
         }
-
-
     }
 
-    public Coordinate getStartPoint() {
-        return startPoint;
+    public PaintCanvasBase getPaintCanvas() {
+        return paintCanvas;
     }
 
-    public Coordinate getEndPoint() {
-        return endPoint;
+    public DrawingPoint getTwoPoint() {
+        return drawingPoint;
     }
 
     public Color getPrimaryColor() {
@@ -95,29 +91,5 @@ public class Shape {
 
     public ShapeShadingType getShadingType() {
         return shadingType;
-    }
-
-    public static class Coordinate {
-        /*
-        This is class for storing coordinate, other class are able to derive it through getter
-        and use it for creating shape
-         */
-
-        private int x;
-        private int y;
-
-        public Coordinate(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
     }
 }

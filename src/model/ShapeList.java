@@ -1,31 +1,26 @@
 package model;
 
+import model.interfaces.IMovementObserver;
 import model.interfaces.IShape;
-import view.gui.PaintCanvas;
-import view.interfaces.PaintCanvasBase;
 
 import java.util.Stack;
 
+/**
+ *     This is MVC class, it is data model for storing undo, redo shape(s).
+ *     This class initiate at the beginning of the program so other classes are able to access it.
+ */
 public class ShapeList{
-
-    /*
-    Shape list is the class mainly for storing undo, redo shape(s) information.
-    This class initiate at the beginning of the program so other classes are able to access it.
-     */
-
-    private PaintCanvas paintCanvas;
     private Stack<IShape> shapeList = new Stack<>();
     private Stack<IShape> undoRedoShapeList = new Stack<>();
-
-    public ShapeList(PaintCanvas paintCanvas) {
-        this.paintCanvas = paintCanvas;
-    }
+    private Stack<Stack<IMovementObserver>> selectList = new Stack<>();
+    private Stack<Stack<IMovementObserver>> undoRedoSelectList = new Stack<>();
+    private Stack<DrawingPoint> movementList = new Stack<>();
+    private Stack<DrawingPoint> undoRedoMovementList = new Stack<>();
 
     public void addShape(IShape iShape) {
         shapeList.add(iShape);
-        iShape.draw(paintCanvas.getGraphics2D());
+        iShape.draw();
     }
-
 
     public Stack<IShape> getShapeList() {
         return shapeList;
@@ -33,5 +28,21 @@ public class ShapeList{
 
     public Stack<IShape> getUndoRedoShapeList() {
         return undoRedoShapeList;
+    }
+
+    public Stack<Stack<IMovementObserver>> getSelectList() {
+        return selectList;
+    }
+
+    public Stack<Stack<IMovementObserver>> getUndoRedoSelectList() {
+        return undoRedoSelectList;
+    }
+
+    public Stack<DrawingPoint> getMovementList() {
+        return movementList;
+    }
+
+    public Stack<DrawingPoint> getUndoRedoMovementList() {
+        return undoRedoMovementList;
     }
 }

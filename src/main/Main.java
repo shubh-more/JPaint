@@ -20,7 +20,7 @@ public class Main {
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
         //Created instance of shape list and calling it from main for creating shape
-        ShapeList shapeList = new ShapeList(paintCanvas);
+        ShapeList shapeList = new ShapeList();
         //Created instance of mouse manager and calling it from main for controlling of mouse
         MouseManager mouseManager = new MouseManager(appState, paintCanvas, shapeList);
         paintCanvas.addMouseListener(mouseManager);
