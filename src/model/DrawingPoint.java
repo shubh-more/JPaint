@@ -2,7 +2,8 @@
 package model;
 
 /**
- * This class is to store two start point and end point coordinate and calculate their left corner coordinate width and height
+ * This class is to store two start point and end point coordinate and calculate their
+ * left corner coordinate width and height
  */
 public class DrawingPoint {
     private Coordinate startPoint;

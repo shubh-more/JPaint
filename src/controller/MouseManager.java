@@ -27,6 +27,8 @@ Extend this class to create a MouseEvent which create instance in MouseManager
     private final ShapeList shapeList;
     private Coordinate startPoint;
 
+    private Coordinate endPoint;
+
 
 
     public MouseManager(ApplicationState appState, PaintCanvas paintCanvas, ShapeList shapeList) {
@@ -42,12 +44,13 @@ Extend this class to create a MouseEvent which create instance in MouseManager
 
     }
 
-    //Once the mouse is released, parameter will be passed to shape builder and result will be displayed
+    //Once the mouse is released, parameter will be passed to shape builder
+    // and result will be displayed
     @Override
     public void mouseReleased(MouseEvent e) {
         Context strategy = new Context();
         DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
-        Coordinate endPoint = new Coordinate(e.getX(), e.getY());
+       this.endPoint = new Coordinate(e.getX(), e.getY());
         Shape newShape = new Shape.ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
                 .setTwoPoint(drawingPoint)

@@ -2,7 +2,6 @@ package model;
 
 /**
  * Class will store the coordinate and other class will derive it from getter and setter
- *
  *  Sprint 2: Setter implemented for observer pattern, it will update the new
  *  coordinate once shape get notified
  */

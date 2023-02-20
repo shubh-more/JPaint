@@ -49,11 +49,12 @@ public class CommandCreate implements IStrategy, ICommand {
         }
         myShapeList.lastElement().clear();
         myUndoRedoList.add(myShapeList.pop());
-        // System.out.println("create: undo");
+         System.out.println("create: undo");
     }
 
     /*
-    Redo is similar as undo, we pop shape from undoRedoList and add it to shapeList, after that redraw this shape on canvas.
+    Redo is similar as undo, we pop shape from undoRedoList and add it to shapeList, after
+    that redraw this shape on canvas.
      */
     @Override
     public void redo() {
@@ -61,6 +62,6 @@ public class CommandCreate implements IStrategy, ICommand {
             return;
         }
         shapeList.addShape(myUndoRedoList.pop());
-        // System.out.println("create: redo");
+        System.out.println("create: redo");
     }
 }

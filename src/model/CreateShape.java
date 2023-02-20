@@ -58,7 +58,9 @@ public class CreateShape implements ICommand {
      */
     @Override
     public void redo() {
+        Stack<IShape> myShapeList = shapeList.getShapeList();
         Stack<IShape> myUndoRedoShapeList = shapeList.getUndoRedoShapeList();
+
         if (myUndoRedoShapeList.isEmpty()) {
             return;
         }

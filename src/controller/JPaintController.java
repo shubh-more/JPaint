@@ -2,6 +2,7 @@ package controller;
 
 import model.Command.CommandRedo;
 import model.Command.CommandUndo;
+import model.ShapeList;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;
@@ -10,9 +11,12 @@ public class JPaintController implements IJPaintController {
     private final IUiModule uiModule;
     private final IApplicationState applicationState;
 
+    private ShapeList shapeList;
+
     public JPaintController(IUiModule uiModule, IApplicationState applicationState) {
         this.uiModule = uiModule;
         this.applicationState = applicationState;
+        this.shapeList =shapeList;
     }
 
     @Override

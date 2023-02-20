@@ -9,7 +9,7 @@ public class CommandRedo implements ICommand {
     }
 
     @Override
-    public void undo() {
+    public void undo() { CommandMemory.undo();
 
     }
 
