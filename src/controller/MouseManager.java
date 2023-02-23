@@ -51,7 +51,7 @@ Extend this class to create a MouseEvent which create instance in MouseManager
         Context strategy = new Context();
         DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
        this.endPoint = new Coordinate(e.getX(), e.getY());
-        Shape newShape = new Shape.ShapeBuilder()
+        Shape newShape = new ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
                 .setTwoPoint(drawingPoint)
                 .setPrimaryColor(appState.getActivePrimaryColor().getColor())

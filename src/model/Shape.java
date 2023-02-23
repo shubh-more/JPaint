@@ -17,79 +17,42 @@ public class Shape {
     private ShapeType shapeType;
     private ShapeShadingType shadingType;
 
-    private Shape(ShapeBuilder shapeBuilder) {
-        this.paintCanvas = shapeBuilder.paintCanvas;
-        this.drawingPoint = shapeBuilder.drawingPoint;
-        this.primaryColor = shapeBuilder.primaryColor;
-        this.secondaryColor = shapeBuilder.secondaryColor;
-        this.shapeType = shapeBuilder.shapeType;
-        this.shadingType = shapeBuilder.shadingType;
+    public Shape(PaintCanvasBase paintCanvas, DrawingPoint drawingPoint, Color primaryColor,
+                 Color secondaryColor, ShapeType shapeType, ShapeShadingType shadingType) {
+        this.paintCanvas = paintCanvas;
+        this.drawingPoint = drawingPoint;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
+        this.shapeType = shapeType;
+        this.shadingType = shadingType;
     }
 
-    public static class ShapeBuilder {
-        private PaintCanvasBase paintCanvas;
-        private DrawingPoint drawingPoint;
-        private Color primaryColor;
-        private Color secondaryColor;
-        private ShapeType shapeType;
-        private ShapeShadingType shadingType;
 
-        public ShapeBuilder setPaintCanvas(PaintCanvasBase paintCanvas) {
-            this.paintCanvas = paintCanvas;
-            return this;
+
+
+
+
+        public PaintCanvasBase getPaintCanvas() {
+            return paintCanvas;
         }
 
-        public ShapeBuilder setTwoPoint(DrawingPoint drawingPoint) {
-            this.drawingPoint = drawingPoint;
-            return this;
+        public DrawingPoint getDrawingPoint() {
+            return drawingPoint;
         }
 
-        public ShapeBuilder setPrimaryColor(Color primaryColor) {
-            this.primaryColor = primaryColor;
-            return this;
+        public Color getPrimaryColor() {
+            return primaryColor;
         }
 
-        public ShapeBuilder setSecondaryColor(Color secondaryColor) {
-            this.secondaryColor = secondaryColor;
-            return this;
+        public Color getSecondaryColor() {
+            return secondaryColor;
         }
 
-        public ShapeBuilder setShapeType(ShapeType shapeType) {
-            this.shapeType = shapeType;
-            return this;
+        public ShapeType getShapeType() {
+            return shapeType;
         }
 
-        public ShapeBuilder setShadingType(ShapeShadingType shadingType) {
-            this.shadingType = shadingType;
-            return this;
-        }
-
-        public Shape build() {
-            return new Shape(this);
+        public ShapeShadingType getShadingType() {
+            return shadingType;
         }
     }
-
-    public PaintCanvasBase getPaintCanvas() {
-        return paintCanvas;
-    }
-
-    public DrawingPoint getTwoPoint() {
-        return drawingPoint;
-    }
-
-    public Color getPrimaryColor() {
-        return primaryColor;
-    }
-
-    public Color getSecondaryColor() {
-        return secondaryColor;
-    }
-
-    public ShapeType getShapeType() {
-        return shapeType;
-    }
-
-    public ShapeShadingType getShadingType() {
-        return shadingType;
-    }
-}
