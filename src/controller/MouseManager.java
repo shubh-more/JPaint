@@ -49,8 +49,14 @@ Extend this class to create a MouseEvent which create instance in MouseManager
     // and result will be displayed
     @Override
     public void mouseReleased(MouseEvent e) {
+<<<<<<< HEAD
         DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
         // builder pattern initiate
+=======
+        Context strategy = new Context();
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
+       this.endPoint = new Coordinate(e.getX(), e.getY());
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
         Shape newShape = new ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
                 .setDrawingPoint(drawingPoint)

@@ -33,10 +33,13 @@ public class ShapeBuilder {
         return this;
     }
 
+<<<<<<< HEAD
     public ShapeBuilder setDrawingPoint(DrawingPoint drawingPoint) {
         this.drawingPoint = drawingPoint;
         return this;
     }
+=======
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
     public ShapeBuilder setShapeType(ShapeType shapeType) {
         this.shapeType = shapeType;
         return this;
@@ -50,6 +53,9 @@ public class ShapeBuilder {
     public Shape build() {
         return new Shape(paintCanvas, drawingPoint, primaryColor, secondaryColor, shapeType, shadingType);
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
 }
