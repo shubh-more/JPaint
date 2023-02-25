@@ -1,5 +1,7 @@
 package controller;
 
+import model.Command.CommandCopy;
+import model.Command.CommandPaste;
 import model.Command.CommandRedo;
 import model.Command.CommandUndo;
 import model.ShapeList;
@@ -32,5 +34,9 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> new CommandUndo().undo());
         uiModule.addEvent(EventName.REDO, () -> new CommandRedo().redo());
+        uiModule.addEvent(EventName.REDO, () -> new CommandCopy(shapeList).run());
+        uiModule.addEvent(EventName.PASTE, () -> new CommandPaste(shapeList).run());
+
+
     }
 }

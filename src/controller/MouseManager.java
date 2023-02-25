@@ -4,6 +4,7 @@ import model.*;
 import model.Command.CommandCreate;
 import model.Command.CommandMove;
 import model.Command.CommandSelect;
+import model.interfaces.IStrategy;
 import model.persistence.ApplicationState;
 import view.gui.PaintCanvas;
 import model.Shape;
@@ -48,27 +49,28 @@ Extend this class to create a MouseEvent which create instance in MouseManager
     // and result will be displayed
     @Override
     public void mouseReleased(MouseEvent e) {
-        Context strategy = new Context();
-        DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
-       this.endPoint = new Coordinate(e.getX(), e.getY());
-        Shape newShape = new Shape.ShapeBuilder()
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
+        // builder pattern initiate
+        Shape newShape = new ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
-                .setTwoPoint(drawingPoint)
+                .setDrawingPoint(drawingPoint)
                 .setPrimaryColor(appState.getActivePrimaryColor().getColor())
                 .setSecondaryColor(appState.getActiveSecondaryColor().getColor())
                 .setShapeType(appState.getActiveShapeType())
                 .setShadingType(appState.getActiveShapeShadingType())
                 .build();
+        // strategy pattern initiate
+        IStrategy mouseMode;
+        Context strategy = new Context();
         if (appState.getActiveMouseMode() == MouseMode.DRAW) {
-            strategy.setMouseMode(new CommandCreate(newShape, shapeList));
-            strategy.execute();
+            mouseMode = new CommandCreate(newShape, shapeList);
         } else if (appState.getActiveMouseMode() == MouseMode.SELECT) {
-            strategy.setMouseMode(new CommandSelect(drawingPoint, shapeList));
-            strategy.execute();
+            mouseMode = new CommandSelect(drawingPoint, shapeList);
         } else {
-            strategy.setMouseMode(new CommandMove(drawingPoint, shapeList));
-            strategy.execute();
+            mouseMode = new CommandMove(drawingPoint, shapeList);
         }
+        strategy.setMouseMode(mouseMode);
+        strategy.execute();
     }
 }
 
