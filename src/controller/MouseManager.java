@@ -4,54 +4,50 @@ import model.*;
 import model.Command.CommandCreate;
 import model.Command.CommandMove;
 import model.Command.CommandSelect;
-import model.persistence.ApplicationState;
-import view.gui.PaintCanvas;
 import model.Shape;
-import model.Coordinate;
-
+import model.interfaces.IStrategy;
+import model.persistence.ApplicationState;
+import view.interfaces.PaintCanvasBase;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import model.Context;
 
+/**
+ * This is MVC pattern, it is controller to communicate between the data (ShapeList) and the UI
+ * (PaintCanvasBase). MouseAdapter (by default) has own way to detect the condition of mouse
+ * (function of clicked, pressed, released, etc.) Coordinate, CreateShape and Shape instances are
+ * created in MouseController.
+ */
 public class MouseManager extends MouseAdapter {
 
-    /*
-    An abstract adapter class for receiving mouse events. The methods in this class are empty. This class exists as convenience for creating listener objects.
-Mouse events let you track when a mouse is pressed, released, clicked, moved, dragged, when it enters a component, when it exits and when a mouse wheel is moved.
-Extend this class to create a MouseEvent which create instance in MouseManager
-    */
-
     private final ApplicationState appState;
-    private final PaintCanvas paintCanvas;
+    private final PaintCanvasBase paintCanvas;
     private final ShapeList shapeList;
     private Coordinate startPoint;
 
-    private Coordinate endPoint;
-
-
-
-    public MouseManager(ApplicationState appState, PaintCanvas paintCanvas, ShapeList shapeList) {
+    public MouseManager(ApplicationState appState, PaintCanvasBase paintCanvas,
+                           ShapeList shapeList) {
         this.appState = appState;
         this.paintCanvas = paintCanvas;
         this.shapeList = shapeList;
     }
 
+
     @Override
     public void mousePressed(MouseEvent e) {
-        //Mouse start point
         startPoint = new Coordinate(e.getX(), e.getY());
-
     }
 
-    //Once the mouse is released, parameter will be passed to shape builder
-    // and result will be displayed
+    /*
+    Once user release the mouse, all parameters will pass to shape builder
+    and it will show the result on canvas
+    correspond to mouse mode
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
-        Context strategy = new Context();
-        DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
-       this.endPoint = new Coordinate(e.getX(), e.getY());
-        Shape newShape = new Shape.ShapeBuilder()
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
+        // builder pattern initiate
+        Shape newShape = new ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
                 .setTwoPoint(drawingPoint)
                 .setPrimaryColor(appState.getActivePrimaryColor().getColor())
@@ -59,17 +55,17 @@ Extend this class to create a MouseEvent which create instance in MouseManager
                 .setShapeType(appState.getActiveShapeType())
                 .setShadingType(appState.getActiveShapeShadingType())
                 .build();
+        // strategy pattern initiate
+        IStrategy mouseMode;
+        Context strategy = new Context();
         if (appState.getActiveMouseMode() == MouseMode.DRAW) {
-            strategy.setMouseMode(new CommandCreate(newShape, shapeList));
-            strategy.execute();
+            mouseMode = new CommandCreate(newShape, shapeList);
         } else if (appState.getActiveMouseMode() == MouseMode.SELECT) {
-            strategy.setMouseMode(new CommandSelect(drawingPoint, shapeList));
-            strategy.execute();
+            mouseMode = new CommandSelect(drawingPoint, shapeList);
         } else {
-            strategy.setMouseMode(new CommandMove(drawingPoint, shapeList));
-            strategy.execute();
+            mouseMode = new CommandMove(drawingPoint, shapeList);
         }
+        strategy.setMouseMode(mouseMode);
+        strategy.execute();
     }
 }
-
-

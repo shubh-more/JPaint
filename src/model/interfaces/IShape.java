@@ -1,5 +1,8 @@
 package model.interfaces;
 
+import model.DrawingPoint;
+import model.Shape;
+
 import java.awt.*;
 
 public interface IShape {
@@ -7,15 +10,9 @@ public interface IShape {
     void draw();
 
     void clear();
-    int  getLeftCornerX();
+    void update(DrawingPoint drawingPoint);
 
-    int getLeftCornerY();
+    void repaint(Graphics g);
 
-    int getWidth();
-
-    int getHeight();
-
-    void draw(Graphics2D g);
-
-    void clear(Graphics2D g);
+    Shape getShape();
 }

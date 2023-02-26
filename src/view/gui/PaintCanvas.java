@@ -1,5 +1,6 @@
 package view.gui;
 
+import model.ShapeList;
 import view.interfaces.PaintCanvasBase;
 
 import javax.swing.JComponent;
@@ -7,8 +8,14 @@ import java.awt.*;
 
 public class PaintCanvas extends PaintCanvasBase {
 
+    ShapeList shapeList;
+
     public Graphics2D getGraphics2D() {
-        return (Graphics2D)getGraphics();
+        return (Graphics2D) getGraphics();
+    }
+
+    public PaintCanvas(ShapeList shapeList) {
+        this.shapeList = shapeList;
     }
 
     @Override
@@ -20,6 +27,6 @@ public class PaintCanvas extends PaintCanvasBase {
     public void paint(Graphics g) {
         super.paint(g);
 
-        System.out.println("Time to repaint");
+        shapeList.getShapeList().forEach(shape -> shape.repaint(g));
     }
 }
