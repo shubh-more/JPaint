@@ -4,6 +4,15 @@ import model.*;
 import model.Command.CommandCreate;
 import model.Command.CommandMove;
 import model.Command.CommandSelect;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+import model.interfaces.IStrategy;
+import model.persistence.ApplicationState;
+import view.gui.PaintCanvas;
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
 import model.Shape;
 import model.interfaces.IStrategy;
 import model.persistence.ApplicationState;
@@ -45,11 +54,27 @@ public class MouseManager extends MouseAdapter {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
+<<<<<<< HEAD
         DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
         // builder pattern initiate
+=======
+<<<<<<< HEAD
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
+        // builder pattern initiate
+=======
+<<<<<<< HEAD
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
+        // builder pattern initiate
+=======
+        Context strategy = new Context();
+        DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
+       this.endPoint = new Coordinate(e.getX(), e.getY());
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
         Shape newShape = new ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
-                .setTwoPoint(drawingPoint)
+                .setDrawingPoint(drawingPoint)
                 .setPrimaryColor(appState.getActivePrimaryColor().getColor())
                 .setSecondaryColor(appState.getActiveSecondaryColor().getColor())
                 .setShapeType(appState.getActiveShapeType())
