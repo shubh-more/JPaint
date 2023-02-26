@@ -1,7 +1,22 @@
 package model;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
+>>>>>>> d33abee21f4ad1003b6b53981de6f758cba492ba
 import model.interfaces.IShape;
+=======
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
 
+<<<<<<< HEAD
+import model.interfaces.IShape;
+=======
+import javax.sound.sampled.Clip;
+import java.awt.datatransfer.Clipboard;
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
 import java.util.Stack;
 
 /**
@@ -12,14 +27,48 @@ public class ShapeList {
 
     private Stack<IShape> shapeList = new Stack<>();
     private Stack<IShape> undoRedoShapeList = new Stack<>();
+<<<<<<< HEAD
     private Stack<Stack<IShape>> selectList = new Stack<>();
     private Stack<Stack<IShape>> undoRedoSelectList = new Stack<>();
+=======
+<<<<<<< HEAD
+    private Stack<Stack<IShape>> selectList = new Stack<>();
+    private Stack<Stack<IShape>> undoRedoSelectList = new Stack<>();
+=======
+<<<<<<< HEAD
+    private Stack<Stack<IShape>> selectList = new Stack<>();
+    private Stack<Stack<IShape>> undoRedoSelectList = new Stack<>();
+=======
+<<<<<<< HEAD
+    private Stack<Stack<IShape>> selectList = new Stack<>();
+    private Stack<IShape> clipboard =new Stack<>();
+
+    private Stack<Stack<IShape>> undoRedoSelectList = new Stack<>();
+=======
+    private Stack<Stack<IMovementObserver>> selectList = new Stack<>();
+    private Stack<IShape> clipboard =new Stack<>();
+
+    private Stack<Stack<IMovementObserver>> undoRedoSelectList = new Stack<>();
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
+>>>>>>> d33abee21f4ad1003b6b53981de6f758cba492ba
     private Stack<DrawingPoint> movementList = new Stack<>();
     private Stack<DrawingPoint> undoRedoMovementList = new Stack<>();
     private Stack<IShape> clipboard = new Stack<>();
     private Stack<Integer> pasteList = new Stack<>();
     private Stack<Stack<IShape>> undoRedoPasteItem = new Stack<>();
     private Stack<Stack<IShape>> undoRedoDeleteList = new Stack<>();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+    private Stack<Stack<IShape>> undoRedoPasteItem = new Stack<>();
+
+
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
+>>>>>>> d33abee21f4ad1003b6b53981de6f758cba492ba
 
     public void addShape(IShape iShape) {
         shapeList.add(iShape);
@@ -50,11 +99,28 @@ public class ShapeList {
         return undoRedoMovementList;
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
+>>>>>>> d33abee21f4ad1003b6b53981de6f758cba492ba
     public Stack<IShape> getClipboard() {
         return clipboard;
     }
 
     public Stack<Integer> getPasteList() {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
+>>>>>>> d33abee21f4ad1003b6b53981de6f758cba492ba
         return pasteList;
     }
 
@@ -65,4 +131,22 @@ public class ShapeList {
     public Stack<Stack<IShape>> getUndoRedoDeleteList() {
         return undoRedoDeleteList;
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+        return getPasteList();
+    }
+
+    public Stack<Stack<IShape>> getUndoRedoPasteItem() {
+       return undoRedoPasteItem;
+    }
+
+
+
+
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
+>>>>>>> 348ef257c98d2c10390d80ac8e8d5f6110a45db9
+>>>>>>> d33abee21f4ad1003b6b53981de6f758cba492ba
 }
