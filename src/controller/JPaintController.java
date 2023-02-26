@@ -1,5 +1,16 @@
 package controller;
+<<<<<<< HEAD
 import model.Command.*;
+=======
+
+import model.Command.CommandCopy;
+<<<<<<< HEAD
+import model.Command.CommandPaste;
+=======
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
+import model.Command.CommandRedo;
+import model.Command.CommandUndo;
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
 import model.ShapeList;
 import model.interfaces.IApplicationState;
 import view.EventName;
@@ -31,9 +42,18 @@ public class JPaintController implements IJPaintController {
 
         uiModule.addEvent(EventName.UNDO, () -> new CommandUndo().undo());
         uiModule.addEvent(EventName.REDO, () -> new CommandRedo().redo());
+<<<<<<< HEAD
         uiModule.addEvent(EventName.COPY, () -> new CommandCopy(shapeList).run());
         uiModule.addEvent(EventName.PASTE, () -> new CommandPaste(shapeList).run());
         uiModule.addEvent(EventName.DELETE, () -> new CommandDelete(shapeList).run());
+=======
+        uiModule.addEvent(EventName.REDO, () -> new CommandCopy(shapeList).run());
+<<<<<<< HEAD
+        uiModule.addEvent(EventName.PASTE, () -> new CommandPaste(shapeList).run());
+=======
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
+
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
 
     }
 }

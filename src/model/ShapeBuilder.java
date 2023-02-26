@@ -33,10 +33,19 @@ public class ShapeBuilder {
         return this;
     }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
     public ShapeBuilder setDrawingPoint(DrawingPoint drawingPoint) {
         this.drawingPoint = drawingPoint;
         return this;
     }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
     public ShapeBuilder setShapeType(ShapeType shapeType) {
         this.shapeType = shapeType;
         return this;
@@ -50,6 +59,14 @@ public class ShapeBuilder {
     public Shape build() {
         return new Shape(paintCanvas, drawingPoint, primaryColor, secondaryColor, shapeType, shadingType);
     }
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 43e7d5abda30d3a04a7d48972fd97ac45e870dde
+>>>>>>> e9b97843ebf7b107a65bd1254acc6976c68d15ae
 }
