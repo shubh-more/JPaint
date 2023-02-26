@@ -1,20 +1,19 @@
 package model;
 
-import model.interfaces.IMovementObserver;
 import model.interfaces.IShape;
 
 import java.util.Stack;
 
 /**
- * I have used the Observer Pattern
- * USed to CommandSelect to addObserver and used by CommandMove to update new coordinate to all observers
+ * This is Observer Pattern It used by SelectCommand to addObserver and used by MoveCommand to
+ * update new coordinate to all observers
  */
 public class MovementAlert {
 
-    private Stack<IMovementObserver> observers;
+    private Stack<IShape> observers;
 
     public void addObserver(ShapeList shapeList, DrawingPoint drawingPoint) {
-        model.CollisionDetection collisionDetection = new model.CollisionDetection(shapeList, drawingPoint);
+        CollisionDetection collisionDetection = new CollisionDetection(shapeList, drawingPoint);
         collisionDetection.addSelectShape();
     }
 
@@ -25,27 +24,42 @@ public class MovementAlert {
     }
 
     public void undoMove(ShapeList shapeList) {
+        if (shapeList.getMovementList().isEmpty()) {
+            return;
+        }
         DrawingPoint drawingPoint = shapeList.getMovementList().lastElement().switchPoint();
         shapeList.getUndoRedoMovementList().add(shapeList.getMovementList().pop());
         observers = shapeList.getSelectList().lastElement();
         notifyAllObservers(drawingPoint, shapeList);
-        System.out.println("Undomove is notify to observer pattern");
-
     }
 
     public void redoMove(ShapeList shapeList) {
-        DrawingPoint drawingPoint = shapeList.getUndoRedoMovementList().lastElement().switchPoint();
-        //shapeList.getMovementList().add(shapeList.getUndoRedoMovementList().pop());
-        shapeList.getUndoRedoMovementList().add(shapeList.getMovementList().push(drawingPoint));
+        if (shapeList.getUndoRedoMovementList().isEmpty()) {
+            return;
+        }
+        DrawingPoint drawingPoint = shapeList.getUndoRedoMovementList().lastElement();
+        shapeList.getMovementList().add(shapeList.getUndoRedoMovementList().pop());
         observers = shapeList.getSelectList().lastElement();
         notifyAllObservers(drawingPoint, shapeList);
-        System.out.println("Redomove is notify to observer pattern");
     }
 
     private void notifyAllObservers(DrawingPoint drawingPoint, ShapeList shapeList) {
-        observers.forEach(observer -> observer.clear());
+        shapeList.getShapeList().forEach(observer -> observer.clear());
         observers.forEach(observer -> observer.update(drawingPoint));
-        shapeList.getShapeList().forEach(shape -> shape.draw());
-        System.out.println("Observer pattern is updated that is Drawingpoint and Shapelist");
+//        shapeList.getShapeList().forEach(shape -> shape.draw());
+        shapeList.getShapeList().forEach(observer -> observer.draw());
+        for (IShape observer : shapeList.getSelectList().lastElement()) {
+            OutlineDecorator outline = new OutlineDecorator();
+            outline.draw(observer);
+        }
+    }
+
+    public void updateCurrentObserver(ShapeList shapeList) {
+        shapeList.getShapeList().forEach(observer -> observer.clear());
+        shapeList.getShapeList().forEach(observer -> observer.draw());
+        for (IShape observer : shapeList.getSelectList().lastElement()) {
+            OutlineDecorator outline = new OutlineDecorator();
+            outline.draw(observer);
+        }
     }
 }

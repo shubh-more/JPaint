@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
@@ -9,24 +9,23 @@ import view.gui.Gui;
 import view.gui.GuiWindow;
 import view.gui.PaintCanvas;
 import view.interfaces.IGuiWindow;
+import view.interfaces.PaintCanvasBase;
 import view.interfaces.IUiModule;
 
+
+
 public class Main {
-    public static void main(String[] args){
-        PaintCanvas paintCanvas = new PaintCanvas();
+
+    public static void main(String[] args) {
+        ShapeList shapeList = new ShapeList();
+        PaintCanvasBase paintCanvas = new PaintCanvas(shapeList);
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
-
         ApplicationState appState = new ApplicationState(uiModule);
-        IJPaintController controller = new JPaintController(uiModule, appState);
-        //Created instance of shape list and calling it from main for creating shape
-        ShapeList shapeList = new ShapeList();
-        //Created instance of mouse manager and calling it from main for controlling of mouse
+        IJPaintController jpaintController = new JPaintController(uiModule, appState, shapeList);
         MouseManager mouseManager = new MouseManager(appState, paintCanvas, shapeList);
         paintCanvas.addMouseListener(mouseManager);
-        controller.setup();
+        jpaintController.setup();
 
     }
 }
-
-
