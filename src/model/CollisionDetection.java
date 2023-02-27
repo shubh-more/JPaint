@@ -30,7 +30,9 @@ public class CollisionDetection {
         int Aw = drawingPoint.getWidth();
         int Ah = drawingPoint.getHeight();
         Stack<IShape> lastList = new Stack<>();
+
         for (IShape shape : shapeList.getShapeList()) {
+
             int Bx = shape.getShape().getDrawingPoint().getLeftCornerX();
             int By = shape.getShape().getDrawingPoint().getLeftCornerY();
             int Bw = shape.getShape().getDrawingPoint().getWidth();

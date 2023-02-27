@@ -22,8 +22,6 @@ In this sprint I have implemented
 
 Sprint 2
 https://github.com/ShubhCodesss/JavaCodesShub
-
-=======
 Except abstract factory pattern in sprint 1, there are totally 4 new patterns implemented
 1. Builder Pattern
 Shape class implement builder pattern so other class are able to create shape through build pattern.

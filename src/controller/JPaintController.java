@@ -1,5 +1,9 @@
 package controller;
 import model.Command.*;
+import model.Command.CommandCopy;
+import model.Command.CommandPaste;
+import model.Command.CommandRedo;
+import model.Command.CommandUndo;
 import model.ShapeList;
 import model.interfaces.IApplicationState;
 import view.EventName;
