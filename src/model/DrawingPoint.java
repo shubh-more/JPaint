@@ -1,6 +1,8 @@
 
 package model;
 
+import java.awt.*;
+
 /**
  * This class is to store two start point and end point coordinate and calculate their
  * left corner coordinate width and height
@@ -48,5 +50,21 @@ public class DrawingPoint {
 
     public DrawingPoint switchPoint() {
         return new DrawingPoint(endPoint, startPoint);
+    }
+
+    public Coordinate getMinXY() {
+        int mouseStartX = Math.min(this.startPoint.getX(), this.endPoint.getX());
+        int mouseStartY = Math.min(this.startPoint.getY(), this.endPoint.getY());
+
+        Coordinate coordinate = new Coordinate(mouseStartX, mouseStartY);
+        return coordinate;
+    }
+
+    public Coordinate getMaxXY() {
+        int mouseEndX = Math.max(this.startPoint.getX(), this.endPoint.getX());
+        int mouseEndY = Math.max(this.startPoint.getY(), this.endPoint.getY());
+
+        Coordinate coordinate = new Coordinate(mouseEndX, mouseEndY);
+        return coordinate;
     }
 }
