@@ -4,10 +4,6 @@ import model.*;
 import model.Command.CommandCreate;
 import model.Command.CommandMove;
 import model.Command.CommandSelect;
-
-import model.interfaces.IStrategy;
-import model.persistence.ApplicationState;
-import view.gui.PaintCanvas;
 import model.Shape;
 import model.interfaces.IStrategy;
 import model.persistence.ApplicationState;
@@ -30,7 +26,7 @@ public class MouseManager extends MouseAdapter {
     private Coordinate startPoint;
 
     public MouseManager(ApplicationState appState, PaintCanvasBase paintCanvas,
-                           ShapeList shapeList) {
+                        ShapeList shapeList) {
         this.appState = appState;
         this.paintCanvas = paintCanvas;
         this.shapeList = shapeList;
@@ -49,17 +45,11 @@ public class MouseManager extends MouseAdapter {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-
         DrawingPoint drawingPoint = new DrawingPoint(startPoint, new Coordinate(e.getX(), e.getY()));
         // builder pattern initiate
-
-    
-        Context strategy = new Context();
-        DrawingPoint drawingPoint = new DrawingPoint(startPoint,new Coordinate(e.getX(), e.getY()));
-       this.endPoint = new Coordinate(e.getX(), e.getY());
         Shape newShape = new ShapeBuilder()
                 .setPaintCanvas(paintCanvas)
-                .setDrawingPoint(drawingPoint)
+                .setTwoPoint(drawingPoint)
                 .setPrimaryColor(appState.getActivePrimaryColor().getColor())
                 .setSecondaryColor(appState.getActiveSecondaryColor().getColor())
                 .setShapeType(appState.getActiveShapeType())
