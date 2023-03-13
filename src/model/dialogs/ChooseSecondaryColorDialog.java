@@ -1,14 +1,14 @@
 package model.dialogs;
 
-import model.ShapeColor;
-import model.interfaces.IApplicationState;
+import model.ShapeColors;
+import model.interfaces.InterfaceApplicationState;
 import view.interfaces.IDialogChoice;
 
-public class ChooseSecondaryColorDialog implements IDialogChoice<ShapeColor> {
+public class ChooseSecondaryColorDialog implements IDialogChoice<ShapeColors> {
 
-    private final IApplicationState applicationState;
+    private final InterfaceApplicationState applicationState;
 
-    public ChooseSecondaryColorDialog(IApplicationState applicationState) {
+    public ChooseSecondaryColorDialog(InterfaceApplicationState applicationState) {
         this.applicationState = applicationState;
     }
 
@@ -23,12 +23,12 @@ public class ChooseSecondaryColorDialog implements IDialogChoice<ShapeColor> {
     }
 
     @Override
-    public ShapeColor[] getDialogOptions() {
-        return ShapeColor.values();
+    public ShapeColors[] getDialogOptions() {
+        return ShapeColors.values();
     }
 
     @Override
-    public ShapeColor getCurrentSelection() {
+    public ShapeColors getCurrentSelection() {
         return applicationState.getActiveSecondaryColor();
     }
 }

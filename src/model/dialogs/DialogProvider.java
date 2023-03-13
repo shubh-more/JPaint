@@ -1,22 +1,22 @@
 package model.dialogs;
 
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
-import model.MouseMode;
-import model.interfaces.IApplicationState;
-import model.interfaces.IDialogProvider;
+import model.MouseFunctions;
+import model.ShapeColors;
+import model.ShapeShadingTypes;
+import model.ShapeTypes;
+import model.interfaces.InterfaceApplicationState;
+import model.interfaces.InterfaceDialogProvider;
 import view.interfaces.IDialogChoice;
 
-public class DialogProvider implements IDialogProvider {
-    private final IDialogChoice<ShapeType> chooseShapeDialog;
-    private final IDialogChoice<ShapeColor> choosePrimaryColorDialog;
-    private final IDialogChoice<ShapeColor> chooseSecondaryColorDialog;
-    private final IDialogChoice<ShapeShadingType> chooseShadingTypeDialog;
-    private final IDialogChoice<MouseMode> chooseStartAndEndPointModeDialog;
-    private final IApplicationState applicationState;
+public class DialogProvider implements InterfaceDialogProvider {
+    private final IDialogChoice<ShapeTypes> chooseShapeDialog;
+    private final IDialogChoice<ShapeColors> choosePrimaryColorDialog;
+    private final IDialogChoice<ShapeColors> chooseSecondaryColorDialog;
+    private final IDialogChoice<ShapeShadingTypes> chooseShadingTypeDialog;
+    private final IDialogChoice<MouseFunctions> chooseStartAndEndPointModeDialog;
+    private final InterfaceApplicationState applicationState;
 
-    public DialogProvider(IApplicationState applicationState) {
+    public DialogProvider(InterfaceApplicationState applicationState) {
         this.applicationState = applicationState;
         chooseShapeDialog = new ChooseShapeDialog(this.applicationState);
         choosePrimaryColorDialog = new ChoosePrimaryColorDialog(this.applicationState);
@@ -26,27 +26,27 @@ public class DialogProvider implements IDialogProvider {
     }
 
     @Override
-    public IDialogChoice<ShapeType> getChooseShapeDialog() {
+    public IDialogChoice<ShapeTypes> getChooseShapeDialog() {
         return chooseShapeDialog;
     }
 
     @Override
-    public IDialogChoice<ShapeColor> getChoosePrimaryColorDialog() {
+    public IDialogChoice<ShapeColors> getChoosePrimaryColorDialog() {
         return choosePrimaryColorDialog;
     }
 
     @Override
-    public IDialogChoice<ShapeColor> getChooseSecondaryColorDialog() {
+    public IDialogChoice<ShapeColors> getChooseSecondaryColorDialog() {
         return chooseSecondaryColorDialog;
     }
 
     @Override
-    public IDialogChoice<ShapeShadingType> getChooseShadingTypeDialog() {
+    public IDialogChoice<ShapeShadingTypes> getChooseShadingTypeDialog() {
         return chooseShadingTypeDialog;
     }
 
     @Override
-    public IDialogChoice<MouseMode> getChooseStartAndEndPointModeDialog() {
+    public IDialogChoice<MouseFunctions> getChooseStartAndEndPointModeDialog() {
         return chooseStartAndEndPointModeDialog;
     }
 }

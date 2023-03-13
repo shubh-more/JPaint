@@ -1,20 +1,20 @@
 package model.dialogs;
 
-import model.MouseMode;
-import model.interfaces.IApplicationState;
+import model.MouseFunctions;
+import model.interfaces.InterfaceApplicationState;
 import view.interfaces.IDialogChoice;
 
-public class ChooseStartAndEndPointModeDialog implements IDialogChoice<MouseMode> {
-    private final IApplicationState applicationState;
+public class ChooseStartAndEndPointModeDialog implements IDialogChoice<MouseFunctions> {
+    private final InterfaceApplicationState applicationState;
 
-    public ChooseStartAndEndPointModeDialog(IApplicationState applicationState) {
+    public ChooseStartAndEndPointModeDialog(InterfaceApplicationState applicationState) {
 
         this.applicationState = applicationState;
     }
 
     @Override
     public String getDialogTitle() {
-        return "Start and End Point Mode";
+        return "Start and End Coordinates Mode";
     }
 
     @Override
@@ -23,12 +23,12 @@ public class ChooseStartAndEndPointModeDialog implements IDialogChoice<MouseMode
     }
 
     @Override
-    public MouseMode[] getDialogOptions() {
-        return MouseMode.values();
+    public MouseFunctions[] getDialogOptions() {
+        return MouseFunctions.values();
     }
 
     @Override
-    public MouseMode getCurrentSelection() {
+    public MouseFunctions getCurrentSelection() {
         return applicationState.getActiveMouseMode();
     }
 }

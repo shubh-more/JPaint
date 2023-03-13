@@ -17,7 +17,7 @@ public class GuiWindow extends JFrame implements IGuiWindow {
     private final int defaultHeight = 800;
     private final String defaultTitle = "JPaint";
     private final Insets defaultButtonDimensions 
-    	= new Insets(5, 8, 5, 8);
+    	= new Insets(4, 7, 4, 7);
     private final Map<EventName, JButton> eventButtons = new HashMap<>();
 
     public GuiWindow(JComponent canvas){
@@ -25,7 +25,7 @@ public class GuiWindow extends JFrame implements IGuiWindow {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle(defaultTitle);
         setSize(defaultWidth, defaultHeight);
-        setBackground(new Color(157, 157, 157));
+        setBackground(new Color(155, 155, 155));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         JPanel window = createWindow();
         window.add(canvas, BorderLayout.CENTER);
@@ -41,11 +41,11 @@ public class GuiWindow extends JFrame implements IGuiWindow {
 	}
 
 	private JPanel createWindow() {
-        JPanel contentPane = createBackgroundPanel();
+		JPanel contentPane = createBackgroundPanel();
         JPanel buttonPanel = createMenu();
         contentPane.add(buttonPanel, BorderLayout.NORTH);
         return contentPane;
-    }
+	}
 
     private JPanel createMenu() {
         JPanel buttonPanel = createButtonPanel();

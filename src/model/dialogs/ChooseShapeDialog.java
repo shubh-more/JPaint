@@ -1,20 +1,20 @@
 package model.dialogs;
 
-import model.ShapeType;
-import model.interfaces.IApplicationState;
+import model.ShapeTypes;
+import model.interfaces.InterfaceApplicationState;
 import view.interfaces.IDialogChoice;
 
-public class ChooseShapeDialog implements IDialogChoice<ShapeType> {
-    private final IApplicationState applicationState;
+public class ChooseShapeDialog implements IDialogChoice<ShapeTypes> {
+    private final InterfaceApplicationState applicationState;
 
-    public ChooseShapeDialog(IApplicationState applicationState) {
+    public ChooseShapeDialog(InterfaceApplicationState applicationState) {
 
         this.applicationState = applicationState;
     }
 
     @Override
     public String getDialogTitle() {
-        return "Shape";
+        return "Shapes";
     }
 
     @Override
@@ -23,12 +23,12 @@ public class ChooseShapeDialog implements IDialogChoice<ShapeType> {
     }
 
     @Override
-    public ShapeType[] getDialogOptions() {
-        return ShapeType.values();
+    public ShapeTypes[] getDialogOptions() {
+        return ShapeTypes.values();
     }
 
     @Override
-    public ShapeType getCurrentSelection() {
+    public ShapeTypes getCurrentSelection() {
         return applicationState.getActiveShapeType();
     }
 }

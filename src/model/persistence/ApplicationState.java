@@ -1,23 +1,23 @@
 package model.persistence;
 
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
-import model.MouseMode;
+import model.MouseFunctions;
+import model.ShapeColors;
+import model.ShapeShadingTypes;
+import model.ShapeTypes;
 import model.dialogs.DialogProvider;
-import model.interfaces.IApplicationState;
-import model.interfaces.IDialogProvider;
+import model.interfaces.InterfaceApplicationState;
+import model.interfaces.InterfaceDialogProvider;
 import view.interfaces.IUiModule;
 
-public class ApplicationState implements IApplicationState {
+public class ApplicationState implements InterfaceApplicationState {
     private final IUiModule uiModule;
-    private final IDialogProvider dialogProvider;
+    private final InterfaceDialogProvider dialogProvider;
 
-    private ShapeType activeShapeType;
-    private ShapeColor activePrimaryColor;
-    private ShapeColor activeSecondaryColor;
-    private ShapeShadingType activeShapeShadingType;
-    private MouseMode activeMouseMode;
+    private ShapeTypes activeShapeTypes;
+    private ShapeColors activePrimaryColor;
+    private ShapeColors activeSecondaryColor;
+    private ShapeShadingTypes activeShapeShadingTypes;
+    private MouseFunctions activeMouseFunctions;
 
     public ApplicationState(IUiModule uiModule) {
         this.uiModule = uiModule;
@@ -27,7 +27,7 @@ public class ApplicationState implements IApplicationState {
 
     @Override
     public void setActiveShape() {
-        activeShapeType = uiModule.getDialogResponse(dialogProvider.getChooseShapeDialog());
+        activeShapeTypes = uiModule.getDialogResponse(dialogProvider.getChooseShapeDialog());
     }
 
     @Override
@@ -42,44 +42,44 @@ public class ApplicationState implements IApplicationState {
 
     @Override
     public void setActiveShadingType() {
-        activeShapeShadingType = uiModule.getDialogResponse(dialogProvider.getChooseShadingTypeDialog());
+        activeShapeShadingTypes = uiModule.getDialogResponse(dialogProvider.getChooseShadingTypeDialog());
     }
 
     @Override
     public void setActiveStartAndEndPointMode() {
-        activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
+        activeMouseFunctions = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
     }
 
     @Override
-    public ShapeType getActiveShapeType() {
-        return activeShapeType;
+    public ShapeTypes getActiveShapeType() {
+        return activeShapeTypes;
     }
 
     @Override
-    public ShapeColor getActivePrimaryColor() {
+    public ShapeColors getActivePrimaryColor() {
         return activePrimaryColor;
     }
 
     @Override
-    public ShapeColor getActiveSecondaryColor() {
+    public ShapeColors getActiveSecondaryColor() {
         return activeSecondaryColor;
     }
 
     @Override
-    public ShapeShadingType getActiveShapeShadingType() {
-        return activeShapeShadingType;
+    public ShapeShadingTypes getActiveShapeShadingType() {
+        return activeShapeShadingTypes;
     }
 
     @Override
-    public MouseMode getActiveMouseMode() {
-        return activeMouseMode;
+    public MouseFunctions getActiveMouseMode() {
+        return activeMouseFunctions;
     }
 
     private void setDefaults() {
-        activeShapeType = ShapeType.RECTANGLE;
-        activePrimaryColor = ShapeColor.BLUE;
-        activeSecondaryColor = ShapeColor.GREEN;
-        activeShapeShadingType = ShapeShadingType.FILLED_IN;
-        activeMouseMode = MouseMode.DRAW;
+        activeShapeTypes = ShapeTypes.RECTANGLE;
+        activePrimaryColor = ShapeColors.BLUE;
+        activeSecondaryColor = ShapeColors.GREEN;
+        activeShapeShadingTypes = ShapeShadingTypes.FILLED_IN;
+        activeMouseFunctions = MouseFunctions.DRAW;
     }
 }

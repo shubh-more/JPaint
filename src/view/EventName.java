@@ -35,7 +35,9 @@ public enum EventName {
 	REDO,
 	COPY,
 	PASTE,
-	DELETE,
+DELETE,
 	GROUP,
-	UNGROUP
+	UNGROUP,
+	SAVE,
+
 }
