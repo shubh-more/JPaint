@@ -47,3 +47,24 @@ a. Builder pattern
 b. Strategy pattern
 c. Observer pattern
 d. MVC pattern
+
+Please find my Sprint 4 submission
+
+Design Pattern
+
+Pattern Command
+
+Composite Pattern
+
+Decorator pattern
+
+Strategy Pattern
+
+Factory Pattern 
+
+Also for extra credit, I have implemented the below point 
+
+For extra credit save of file. A save button has been implemented which is present at the last after ungrouping which basically used to save the file in jpeg format and can be used in different paint
+ Also 10 different shapes are been implemented which will perform all the task which is present such as group, ungroup, copy, paste, etc. 
+Github Link: https://github.com/ShubhCodesss/JavaCodesShub
+
